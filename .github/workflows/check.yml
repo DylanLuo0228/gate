@@ -67,7 +67,7 @@ jobs:
           MAX_CHECK_NODES: ${{ github.event.inputs.max_nodes || '0' }}
           EDGE_HOSTS: ${{ vars.EDGE_HOSTS }}          
           MIN_SUCCESS_RATIO: '0'
-        run: python vpngate.py
+        run: python vpngate.py && (grep -v 'public-vpn-' public/nodes.txt > public/nodes.keep || true) && mv public/nodes.keep public/nodes.txt
 
       - name: Ensure GitHub Pages is enabled
         env:
